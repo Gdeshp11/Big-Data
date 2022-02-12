@@ -24,14 +24,17 @@ public class Reduce
             }
         }
         int n = Integer.parseInt(context.getConfiguration().get("n"));
+        // int X = Integer.parseInt(context.getConfiguration().get("X"));
         float result = 0.0f;
         float m_ij;
         float n_jk;
+
         for (int j = 0; j < n; j++) {
             m_ij = hashA.containsKey(j) ? hashA.get(j) : 0.0f;
             n_jk = hashB.containsKey(j) ? hashB.get(j) : 0.0f;
             result += m_ij * n_jk;
         }
+
         if (result != 0.0f) {
             context.write(null,
                     new Text(key.toString() + "," + Float.toString(result)));
